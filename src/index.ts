@@ -11,8 +11,7 @@ import globalError from "./middlewares/globalError";
 import ApiError from "./utils/ApiError";
 
 import authRoute from "./routes/authRoute";
-
-
+import projectRoute from "./routes/projectRoute";
 
 dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
@@ -29,6 +28,7 @@ app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/auth", authRoute);
+app.use("/project", projectRoute);
 
 app.use("*", (req: Request, res: Response, next: NextFunction) => {
   next(new ApiError("Can't find this route ", 404));

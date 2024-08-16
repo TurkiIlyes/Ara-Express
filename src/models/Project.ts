@@ -14,7 +14,6 @@ const projectSchema = new Schema<ProjectType>(
       required: [true, "Project required"],
       unique: true,
       minlength: [3, "Too short project name"],
-      maxlength: [32, "Too long project name"],
     },
     image: String,
     type: {

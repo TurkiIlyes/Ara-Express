@@ -12,6 +12,7 @@ import ApiError from "./utils/ApiError";
 
 import authRoute from "./routes/authRoute";
 import projectRoute from "./routes/projectRoute";
+import contactUsRoute from "./routes/contactUsRoute";
 
 dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
@@ -29,6 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/auth", authRoute);
 app.use("/project", projectRoute);
+app.use("/contactUs", contactUsRoute);
 
 app.use("*", (req: Request, res: Response, next: NextFunction) => {
   next(new ApiError("Can't find this route ", 404));

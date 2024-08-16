@@ -1,12 +1,14 @@
 import express from "express";
 import {
   createProjectValidator,
+  updateProjectValidator,
   deleteProjectValidator,
 } from "../utils/validators/projectValidator";
 
 import {
   getProjects,
   createProject,
+  updateProject,
   deleteProject,
 } from "../services/projectService";
 import { protect, allowedTo } from "../services/authService";
@@ -49,6 +51,14 @@ router
 
 router
   .route("/:id")
-  .delete(protect, allowedTo("admin"), deleteProjectValidator, deleteProject);
+  .delete(protect, allowedTo("admin"), deleteProjectValidator, deleteProject)
+  .put(
+    protect,
+    allowedTo("admin"),
+    uploadProjectImage,
+    resizeProjectImage,
+    updateProjectValidator,
+    updateProject
+  );
 
 export default router;

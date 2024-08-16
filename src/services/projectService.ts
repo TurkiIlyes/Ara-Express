@@ -23,6 +23,22 @@ export const createProject = asyncHandler(
   }
 );
 
+export const updateProject = asyncHandler(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const { id } = req.params;
+
+    const updatedProject = await Project.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
+
+    if (!updatedProject) {
+      return next(new ApiError("Project not found", 404));
+    }
+
+    res.status(200).json({ data: updatedProject });
+  }
+);
+
 // @desc    Delete project
 // @route   DELETE /api/v1/project/:id
 // @access  Private/Admin

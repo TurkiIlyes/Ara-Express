@@ -20,7 +20,7 @@ import {
 const router = express.Router();
 
 /**
- * @route   GET /projects
+ * @route   GET /project
  * @desc    Get all projects
  * @access  Public
  */
@@ -30,7 +30,7 @@ router
   .get(getProjects)
 
   /**
-   * @route   POST /projects
+   * @route   POST /project
    * @desc    Create a new project
    * @access  Private (admin only)
    */
@@ -52,6 +52,11 @@ router
 router
   .route("/:id")
   .delete(protect, allowedTo("admin"), deleteProjectValidator, deleteProject)
+  /**
+   * @route   PUT /projects/:id
+   * @desc    Update a project by ID
+   * @access  Private (admin only)
+   */
   .put(
     protect,
     allowedTo("admin"),

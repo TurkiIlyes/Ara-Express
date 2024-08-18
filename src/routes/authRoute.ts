@@ -15,14 +15,14 @@ import {
 // Rate limiter middleware to prevent brute-force attacks
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 200, // limit each IP to 100 requests per windowMs
+  max: 100, // limit each IP to 100 requests per windowMs
   message: "Too many requests from this IP, please try again after 15 minutes",
 });
 
 
 router.use(limiter);
 /**
- * @route   POST /sign-up
+ * @route   POST /auth/sign-up
  * @desc    Register a new user
  * @access  Public
  */
@@ -34,7 +34,7 @@ router.post(
 
 
 /**
- * @route   POST /signin
+ * @route   POST /auth/sign-in
  * @desc    Authenticate user and get token
  * @access  Public
  */
